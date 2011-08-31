@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'spec_helper'
 
 describe Snippet do
@@ -17,7 +18,7 @@ describe Snippet do
   end
 
   context "validations" do
-    
+
     it "rejects empty title" do
       Snippet.new(@valid_attributes.merge(:title => "")).should_not be_valid
     end
@@ -26,7 +27,42 @@ describe Snippet do
       # as one gets created before each spec by reset_snippet
       Snippet.new(@valid_attributes).should_not be_valid
     end
-    
+
+  end
+
+  it 'should return the page it is attached to' do
+    @snippet.pages.should be_empty
+    page = Page.create!(:title => 'Page')
+    2.times do
+      part = PagePart.create!(:title => 'Other part', :body => "OTHER PART BODY", :page_id => Page.create!(:title => 'Other Page').id)
+      part.snippets << @snippet
+    end
+    @snippet.pages.should have(2).pages
+    @snippet.pages.each do |p|
+      p.title.should_not == page.title
+    end
+  end
+
+  it 'should sanitize its title for a filename' do
+    @snippet.template_filename.should == '_rspec_is_great_for_testing_too.html.erb'
+    @snippet.title = '/dir & folder/FooÑBar'
+    @snippet.template_filename.should == '_dir_folder_foo_bar.html.erb'
+  end
+
+  it 'should return its default template' do
+    file = File.open("#{RAILS_ROOT}/app/views/shared/snippets/#{@snippet.template_filename}", 'w')
+    file.write("<%= snippet.title %>")
+    file.close
+    @snippet.content.should == @snippet.title
+    File.delete(file.path)
+  end
+
+  it 'should return its body if template not available' do
+    @snippet.body = 'BODY'
+    mock_action_view = mock('mock_action_view')
+    ActionView::Base.stub!(:new).and_return(mock_action_view)
+    mock_action_view.should_receive(:render).and_raise(ActionView::MissingTemplate.new([],nil,nil,nil))
+    @snippet.content.should == 'BODY'
   end
 
 end
