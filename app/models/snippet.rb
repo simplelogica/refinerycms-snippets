@@ -1,5 +1,7 @@
 class Snippet < ActiveRecord::Base
 
+  TEMPLATES_DIR = "app/views/shared/snippets"
+
   acts_as_indexed :fields => [:title, :body]
 
   validates :title, :presence => true, :uniqueness => true
@@ -9,7 +11,7 @@ class Snippet < ActiveRecord::Base
   has_many :snippet_page_parts, :dependent => :destroy
   has_many :page_parts, :through => :snippet_page_parts
 
-  named_scope :for_page, lambda{ |page|
+  scope :for_page, lambda{ |page|
     raise RuntimeError.new("Couldn't find Snippet for a nil Page") if page.blank?
     joins(:page_parts => :page).where(:pages => {:id => page.id})
 
@@ -45,12 +47,17 @@ class Snippet < ActiveRecord::Base
     "#{filename}.html.erb"
   end
 
+  def template_path
+    File.join(TEMPLATES_DIR, template_filename)
+  end
+
+  def template?
+    File.file? template_path
+  end
+
   def content
-    begin
-      return ActionView::Base.new(Rails.configuration.paths.app.views.first).render(:file => "shared/snippets/#{self.template_filename}", :locals => {:snippet => self})
-    rescue ActionView::MissingTemplate
-      self.body
-    end
+    return template_filename if template?
+    self.body
   end
 
 end
