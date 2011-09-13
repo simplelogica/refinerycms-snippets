@@ -6,7 +6,7 @@ module Refinery
 
       config.before_initialize do
         require 'extensions/page_extensions'
-        require 'extensions/pages_controller_extensions'
+        require 'extensions/pages_helper_extensions'
       end
 
       initializer "static assets" do |app|
@@ -19,7 +19,7 @@ module Refinery
           has_many :snippets, :through => :snippet_page_parts, :order => 'position ASC'
         end
         Page.send :include, Extensions::Page
-        #PagesController.send :include, Extensions::PagesController
+        PagesHelper.send :include, Extensions::PagesHelper
       end
 
       config.after_initialize do

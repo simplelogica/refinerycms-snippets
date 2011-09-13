@@ -12,14 +12,6 @@ describe Page do
     @page.parts << @part
   end
 
-  it 'should give content for one part wrapped with is snippets' do
-    @page.content_for(:part).should == "BEFORE BODY<p>PART BODY</p>AFTER BODY"
-  end
-
-  it 'should give content for one part without is snippets' do
-    @page.content_without_snippets_for(:part).should == "<p>PART BODY</p>"
-  end
-
   it 'should return all snippets attached to its parts' do
     page = Page.create!(:title => 'Other page')
     part = PagePart.create!(:title => 'Other part', :body => "OTHER PART BODY")
