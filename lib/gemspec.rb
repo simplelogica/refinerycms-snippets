@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# -*- coding: undecided -*-
+# -*- coding: utf-8 -*-
 require File.expand_path('../refinery/snippets/version', __FILE__)
 
 files = Dir.glob("**/*").flatten.reject do |file|
@@ -9,7 +9,7 @@ end
 gemspec = <<EOF
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
-  s.name              = %q{sl-refinerycms-snippets}
+  s.name              = %q{refinerycms-sl-snippets}
   s.version           = %q{#{Refinery::Snippets::VERSION}}
   s.description       = %q{Ruby on Rails Snippets engine for Refinery CMS}
   s.date              = %q{#{Time.now.strftime('%Y-%m-%d')}}
