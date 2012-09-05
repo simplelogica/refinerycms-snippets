@@ -10,7 +10,7 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 ## TODO
 
-### to 2.0
+### to 1.5
 * improve UI 
 * Documentation
 * Tests
@@ -19,8 +19,8 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 Add this line to your applications `Gemfile`
 
-    gem 'sl-refinerycms-snippets', '~> 1.0.0'
-
+    gem 'refinerycms-sl-snippets', '~> 1.0.0', :require => 'refinerycms-snippets'
+    
 Next run
 
     bundle install
@@ -49,4 +49,4 @@ Templates are normal erb files. If you want to add complex logic to them I sugge
 
 ## Thanks
 
-This is build upon the original (and great) refinerycms-snippets from keram: https://github.com/keram/refinerycms-snippets
+This is build upon the original refinerycms-snippets from keram: https://github.com/keram/refinerycms-snippets
