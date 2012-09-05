@@ -10,24 +10,16 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 ## TODO
 
-### to 1.0
-* Snippet selector in page administration. -- done
-* Save and Continue button -- done
-* Attaching snippet to page part directly through administration, without overriding view template -- done
-* Documentation
-* Tests 
-
 ### to 2.0
-* custom attributes for snippet (id, classes etc)
-* support for dynamic snippets (erb templates, forms etc) -- done
 * improve UI 
-* inheritance and clone 
+* Documentation
+* Tests
 
 ## Install
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-snippets', '~> 2.0.0'
+    gem 'sl-refinerycms-snippets', '~> 1.0.0'
 
 Next run
 
@@ -55,11 +47,6 @@ For example, a template with title "VIP clients: photos" would search in "app/vi
 
 Templates are normal erb files. If you want to add complex logic to them I suggest the use of [Cells](http://cells.rubyforge.org/).
 
-## Screenshots
+## Thanks
 
-![Create/Edit Snippet] (http://farm3.static.flickr.com/2150/5702424159_a688bfd7dd_b.jpg)
-
-## Donate
-
-Feel free buy me some gift ;-)
-http://www.amazon.com/gp/registry/wishlist/1BBMUW9DDYXFF
+This is build upon the original (and great) refinerycms-snippets from keram: https://github.com/keram/refinerycms-snippets
