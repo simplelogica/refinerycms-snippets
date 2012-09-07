@@ -10,7 +10,6 @@ module Refinery
 
       config.before_initialize do
         require 'extensions/page_extensions'
-        require 'extensions/application_helper_extensions'
       end
 
       initializer "register refinery_snippets plugin", :after => :set_routes_reloader do |app|
