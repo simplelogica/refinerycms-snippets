@@ -32,8 +32,10 @@ Next run
 * Create Snippet on /refinery/snippets
 * Now you can attach snippet to page when you click Edit this page on `/refinery/pages`. In the Snippets tab you can select the part to which you want to attach the block and add it after and/or before the html body of the part.
 * Next you can initialize a PagePartSectionPresenter with the page part that you would like to render and access its html output:
+
     presenter = Refinery::Pages::PagePartSectionPresenter.new(page_part)
     presenter.wrapped_html
+
 * You have some other interesting methods to work with snippets:
   * content_or_render_of(snippet): will return the content body (or erb template) of the snippet. 
   * page.snippets: returns all the snippets attached to all the parts of page.
