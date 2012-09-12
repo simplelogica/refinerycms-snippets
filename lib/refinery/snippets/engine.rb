@@ -10,7 +10,6 @@ module Refinery
 
       config.before_initialize do
         require 'extensions/page_extensions'
-        require 'extensions/application_helper_extensions'
       end
 
       initializer "register refinery_snippets plugin", :after => :set_routes_reloader do |app|
@@ -19,7 +18,7 @@ module Refinery
           plugin.pathname = root
           plugin.name = "refinery_snippets"
           plugin.url = proc {Refinery::Core::Engine.routes.url_helpers.admin_snippets_path}
-          plugin.menu_match = /^\/?(admin|refinery)\/snippets/
+          plugin.menu_match = %r{refinery/snippets(_page_parts)?$}
           plugin.activity = {
                                :class_name => :'refinery/snippet',
                                :title => 'title'
@@ -33,7 +32,22 @@ module Refinery
           has_many :snippets, :through => :snippet_page_parts, :order => 'position ASC'
         end
         Refinery::Page.send :include, Extensions::Page
-        ApplicationHelper.send :include, Extensions::ApplicationHelper
+        Refinery::Pages::PagePartSectionPresenter.class_eval do
+          def initialize(page_part)
+            super()
+            self.id = convert_title_to_id(page_part.title) if page_part.title
+
+            content = ""
+            content += page_part.snippets.before.map{ |snippet| content_or_render_of(snippet) }.join
+            content += page_part.body
+            content += page_part.snippets.after.map{ |snippet| content_or_render_of(snippet) }.join
+            self.fallback_html = content.html_safe
+          end
+
+          def content_or_render_of(snippet)
+            snippet.template? ? render(:file => snippet.template_path) : snippet.body
+          end
+        end
       end
 
       config.after_initialize do
