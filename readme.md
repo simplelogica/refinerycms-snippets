@@ -10,7 +10,6 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 ## TODO
 
-### to 1.5
 * improve UI 
 * Documentation
 * Tests
@@ -19,7 +18,7 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 Add this line to your applications `Gemfile`
 
-    gem 'refinerycms-sl-snippets', '~> 1.0.0', :require => 'refinerycms-snippets'
+    gem 'refinerycms-sl-snippets', '~> 1.1.0', :require => 'refinerycms-snippets'
     
 Next run
 

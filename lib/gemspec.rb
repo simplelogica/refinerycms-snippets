@@ -19,11 +19,10 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
   s.homepage          = %q{https://github.com/simplelogica/refinerycms-snippets}
   
-  s.add_dependency    'refinerycms-pages', '>= 2.0.0'
+  s.add_dependency    'refinerycms-pages', '~> 2.1.0.dev'
 
-  s.files             = [
-    '#{files.join("',\n    '")}'
-  ]
+  s.files       = `git ls-files`.split("\n")
+  s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
 end
 EOF
