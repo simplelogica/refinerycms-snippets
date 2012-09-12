@@ -30,8 +30,10 @@ Next run
 ## Usage
 
 * Create Snippet on /refinery/snippets
-* Now you can attach snippet to page when you click Edit this page on `/refinery/pages`. In the Snippets tab you can select the part to which you want to attach the block and add it after and/or before the html body of the part.  
-* Next you can use content_of(@page, :part) to print the body of the part and the snippets attached to it in the pages views.
+* Now you can attach snippet to page when you click Edit this page on `/refinery/pages`. In the Snippets tab you can select the part to which you want to attach the block and add it after and/or before the html body of the part.
+* Next you can initialize a PagePartSectionPresenter with the page part that you would like to render and access its html output:
+    presenter = Refinery::Pages::PagePartSectionPresenter.new(page_part)
+    presenter.wrapped_html
 * You have some other interesting methods to work with snippets:
   * content_or_render_of(snippet): will return the content body (or erb template) of the snippet. 
   * page.snippets: returns all the snippets attached to all the parts of page.
@@ -41,7 +43,7 @@ Next run
 
 ## ERB templates usage
 
-Snippets search for templates in RAILS_VIEWS_PATH/shared/snippets. The snippet searchs for a file with its same name but with all non A-Za-z0-9 characters changed to underscores. If this file exists, snippet html body is ignored and the template is rendered in its place. Methods rendering the template, if exists, in place of the body are content_of(@page, :part) and content_or_render_of(snippet).
+Snippets search for templates in RAILS_VIEWS_PATH/shared/snippets. The snippet searches for a file with its same name but with all non A-Za-z0-9 characters changed to underscores. If this file exists, snippet html body is ignored and the template is rendered in its place. Methods rendering the template, if exists, in place of the body are content_of(@page, :part) and content_or_render_of(snippet).
 
 For example, a template with title "VIP clients: photos" would search in "app/views/shared/snippets" for a file named "vip_clients_photos.html.erb"; "Country & region banners: España" for "country_region_banners_espa_na" and so on.
 
