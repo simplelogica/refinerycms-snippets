@@ -6,7 +6,7 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 ## Requirements
 
-* RefineryCMS with 'Pages' engine (refinerycms-pages >= 2.0.0)
+* RefineryCMS with 'Pages' engine (refinerycms-pages = 2.1.0.dev)
 
 ## TODO
 
