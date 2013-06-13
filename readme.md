@@ -6,14 +6,15 @@ Snippets allows you to relate one or more html blocks or erb templates to any pa
 
 ## Requirements
 
+* Rails 3.1 (it may work with lower versions but I had no try it).
 * RefineryCMS with 'Pages' engine (refinerycms-pages >= 2.0.0)
 
 ## TODO
 
-### to 1.5
 * improve UI 
 * Documentation
 * Tests
+* Update to work properly with Rails 3 asset pipeline.
 
 ## Install
 
