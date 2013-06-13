@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = %q{refinerycms-sl-snippets}
-  s.version           = %q{1.0.0}
+  s.version           = %q{1.0.1}
   s.description       = %q{Ruby on Rails Snippets engine for Refinery CMS}
-  s.date              = %q{2012-09-05}
+  s.date              = %q{2013-06-13}
   s.summary           = %q{Html snippets for Refinery CMS page}
   s.authors           = ['Rodrigo García Suárez', 'Simplelogica', 'Marek L.']
   s.email             = %q{rodrigo@simplelogica.net}
