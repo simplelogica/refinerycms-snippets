@@ -19,7 +19,7 @@
     <%
       inactive_snippets = []
       Refinery::Snippet.all.inject(inactive_snippets) do |s, snippet|
-        unless snippet.after?(part) and snippet.before?(part)
+        unless s.blank? || (snippet.after?(part) and snippet.before?(part))
           s << snippet
         end
       end
