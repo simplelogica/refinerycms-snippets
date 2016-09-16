@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = %q{refinerycms-sl-snippets}
-  s.version           = %q{1.0.2}
+  s.version           = %q{1.1.2}
   s.description       = %q{Ruby on Rails Snippets engine for Refinery CMS}
   s.date              = %q{2012-09-12}
   s.summary           = %q{Html snippets for Refinery CMS page}
